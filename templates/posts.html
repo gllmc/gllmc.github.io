@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Posts – {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ section.title }}</h1>
+    <ul>
+        {% for page in section.pages %}
+            <li>
+                <a href="{{ page.permalink | safe }}">
+                    {{ page.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

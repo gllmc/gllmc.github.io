@@ -1,0 +1,46 @@
+name: Build and deploy the website
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Install Zola
+              run: |
+                  curl -sSLf https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz \
+                    | tar -xz
+                  sudo mv zola /usr/local/bin/
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "24"
+
+            - name: Build the website
+              run: |
+                  npm ci
+                  npm run build
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  path: public/
+
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
