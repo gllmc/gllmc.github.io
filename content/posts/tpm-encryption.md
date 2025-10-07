@@ -19,7 +19,7 @@ The idea behind TPM-based encryption is to let the TPM automatically provide the
 
 But how can the TPM verify that the legitimate system is booting up? This is where _Platform Configuration Registers_ (PCRs) come into play. These registers are initialized on startup and they contain _hash values_ measuring information about the system state. PCRs 0-7 are intended for the firmware, while PCRs 8-15 are intended for the operating system. The only possible operation is to extend them with data, typically:
 
-$$\mathtt{PCR} := \mathtt{sha256}(\mathtt{PCR} \mathbin\Vert \text{data})$$
+$$\mathtt{PCR} \leftarrow \mathtt{sha256}(\mathtt{PCR} \mathbin\Vert \text{data})$$
 
 In particular, once something has been measured into a PCR, it is supposed to be computationally infeasible to give it an arbitrary value. Keys stored in the TPM can be associated with a set of PCR values. They are only released if the current PCR values match the expected ones. The most important firmware PCRs for our purpose are:
 
@@ -33,7 +33,7 @@ Is is even possible to bind a key not with a single value, but with a public key
 On a Linux system with systemd installed, you can inspect the current PCR values using the command:
 
 ```bash
-systemd-analyse pcrs
+systemd-analyze pcrs
 ```
 
 All PCRs 0-7 should typically be non-zero, while PCRs 8-15 could be filled or not, depending on the EFI bootloader. On Windows, you can run this instead:
@@ -115,7 +115,7 @@ This installs systemd-boot as the boot manager, and adds authenticated variables
 
 If you want to clear all keys and certificates and only enroll your own, you can usually clear all keys in the UEFI settings (which enables the Setup Mode of Secure Boot), and the bootloader will automatically prompt you to enroll your keys. **Be careful and ensure that there is nothing else you need in the `db` variable**. For instance, a discrete GPU OpROM might require a specific certificate to be present, and if you don't have an integrated GPU, you will lose all display output, making it very hard to fix the situation.
 
-You can also simply add `db.auth` to the existing keys, which is usually feasible without clearing everything from the UEFI settings.
+You can also simply add `db.auth` to the existing certificates, which is usually feasible without clearing everything from the UEFI settings.
 
 Before enabling Secure Boot, is it necessary to either [add an EFI variable allowing the UKI to be directly booted](https://wiki.archlinux.org/title/Unified_kernel_image#Directly_from_UEFI), or to [sign systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Signing_for_Secure_Boot) if a bootloader is required. Once everything is set up and Secure Boot enabled, the TPM can be enrolled with the [`systemd-cryptenroll`](https://man.archlinux.org/man/systemd-cryptenroll.1) command:
 
@@ -166,4 +166,4 @@ All Key Protectors
         0, 2, 4, 11
 ```
 
-If you are dual-booting Windows through GRUB or systemd-boot or you have a discrete GPU, it is likely that you are using the `0, 2, 4, 11` profile. This configuration is also secure because the hash of your bootloader and OpROMs is bound to the key. However, it is more fragile, since an update of the OpROMs or the systemd-boot EFI binary would change PCR 4. Keep your recovery key handy in this case!
+If you are dual-booting Windows through GRUB or systemd-boot or you have a discrete GPU, it is likely that you are using the `0, 2, 4, 11` profile. This configuration is also secure because the hash of your bootloader and OpROMs is bound to the key. However, it is more fragile, since an update of the OpROMs or the systemd-boot EFI binary would change PCR 4. Keep your BitLocker recovery key handy in this case!
