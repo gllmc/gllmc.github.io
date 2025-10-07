@@ -7,6 +7,8 @@ Nowadays, disk encryption is a must-have feature for devices, especially those s
 
 On Linux, disk encryption is also widely used, but it requires the system to be installed on a LUKS-encrypted partition, and the master key is usually derived from a passphrase. For this to be secure, a high-entropy passphrase is required, whose input at each boot can be inconvenient. I therefore wanted to rely on my TPM to unlock my Arch laptop. Thanks notably to the **systemd** development team, there has been some significant progress in this area recently. I learned a few things while setting this up, which motivated me to write this post.
 
+This is not a complete tutorial, and you should always be careful when changing UEFI settings. Make backups of your UEFI settings, certificates, and keys, and ensure you have access to the recovery keys of any system already using disk encryption.
+
 ## What is a TPM?
 
 A TPM is a secure hardware module, which is usually integrated into the CPU. It is able to **store** cryptographic keys and **control** the conditions under which they can be used. It is designed to make the physical extraction of keys extremely difficult. Relying on secure hardware to protect data without knowledge of a high-entropy secret is now common, for example with YubiKeys or Google Password Manager, which allows [data recovery using only the device's PIN or pattern](https://security.googleblog.com/2022/10/SecurityofPasskeysintheGooglePasswordManager.html).
@@ -111,13 +113,11 @@ bootctl install --secure-boot-auto-enroll yes --certificate /etc/kernel/secure-b
 
 This installs systemd-boot as the boot manager, and adds authenticated variables `PK.auth`, `KEK.auth`, and `db.auth` in the `/boot/loader/keys/auto/` directory on the EFI partition.
 
-If you want to clear all keys and certificates and only enroll your own, you can usually clear all keys in the UEFI settings (which enables the Setup Mode of Secure Boot), and the bootloader will automatically prompt you to enroll your keys. **Be careful and ensure that there is nothing else you need in the `db` database**. For instance, a discrete GPU OpROM might require a specific certificate to be present.
+If you want to clear all keys and certificates and only enroll your own, you can usually clear all keys in the UEFI settings (which enables the Setup Mode of Secure Boot), and the bootloader will automatically prompt you to enroll your keys. **Be careful and ensure that there is nothing else you need in the `db` variable**. For instance, a discrete GPU OpROM might require a specific certificate to be present, and if you don't have an integrated GPU, you will lose all display output, making it very hard to fix the situation.
 
 You can also simply add `db.auth` to the existing keys, which is usually feasible without clearing everything from the UEFI settings.
 
-Before enabling Secure Boot, is it necessary to either [add an EFI variable allowing the UKI to be directly booted](https://wiki.archlinux.org/title/Unified_kernel_image#Directly_from_UEFI), or to [sign systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Signing_for_Secure_Boot) if a bootloader is required.
-
-Once everything is set up and Secure Boot enabled, the TPM can be enrolled with the [`systemd-cryptenroll`](https://man.archlinux.org/man/systemd-cryptenroll.1) command:
+Before enabling Secure Boot, is it necessary to either [add an EFI variable allowing the UKI to be directly booted](https://wiki.archlinux.org/title/Unified_kernel_image#Directly_from_UEFI), or to [sign systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Signing_for_Secure_Boot) if a bootloader is required. Once everything is set up and Secure Boot enabled, the TPM can be enrolled with the [`systemd-cryptenroll`](https://man.archlinux.org/man/systemd-cryptenroll.1) command:
 
 ```bash
 systemd-cryptenroll /dev/nvme0n1p2 --tpm2-device=auto --tpm2-pcrs=7 --tpm2-public-key=/etc/systemd/tpm2-pcr-public-key-initrd.pem
@@ -166,4 +166,4 @@ All Key Protectors
         0, 2, 4, 11
 ```
 
-If you boot Windows through GRUB or systemd-boot or you have a discrete GPU, it is likely that you are using the `0, 2, 4, 11` profile. This configuration is also secure because the hash of your bootloader and OpROMs is bound to the key. However, it is more fragile, since an update of the OpROMs or the systemd-boot EFI binary would change PCR 4. Keep your recovery key handy in this case!
+If you are dual-booting Windows through GRUB or systemd-boot or you have a discrete GPU, it is likely that you are using the `0, 2, 4, 11` profile. This configuration is also secure because the hash of your bootloader and OpROMs is bound to the key. However, it is more fragile, since an update of the OpROMs or the systemd-boot EFI binary would change PCR 4. Keep your recovery key handy in this case!
