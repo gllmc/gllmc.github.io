@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="text-3xl font-bold">
+    <h1>
         Hi! 👋
     </h1>
 
-    <p>I'm Guillaume Chirache and I'm a student in computer science, currently doing the M2 MPRI in Paris.</p>
+    <p>I am Guillaume Chirache, a computer science student currently pursuing my master’s degree (<i>Master parisien de recherche en informatique</i>, M2 MPRI) in Paris. This year also corresponds to the fourth year of my studies in the <i>Cycle ingénieur</i> program at École polytechnique.</p>
 
-    <p>To contact me, simply write at <code class="text-red-700 dark:text-red-300">[first]@[last].fr</code>.
+    <p>I am primarily interested in areas at the intersection of mathematics and computer science, namely (post-quantum) cryptography, programming languages and computability.</p>
+
+    <p>You are welcome to contact me at <code>[first]@[last].fr</code> (you can use <a href="{{ get_url(path='/pgp/guillaume-chirache-public-key.asc') }}">my PGP key</a>).</p>
 {% endblock %}

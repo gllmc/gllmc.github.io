@@ -5,8 +5,8 @@
         "tailwindcss": "^4.1.14"
     },
     "scripts": {
-        "build": "npx @tailwindcss/cli -i ./theme/input.css -o ./static/output.css --minify && zola build",
-        "watch": "concurrently 'npx @tailwindcss/cli -i ./theme/input.css -o ./static/output.css --watch' 'zola serve'"
+        "build": "npx @tailwindcss/cli -i ./theme/input.css -o ./static/css/tailwind-output.css --minify && zola build",
+        "watch": "concurrently 'npx @tailwindcss/cli -i ./theme/input.css -o ./static/css/tailwind-output.css --watch' 'zola serve'"
     },
     "devDependencies": {
         "concurrently": "^9.2.1",

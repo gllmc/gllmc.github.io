@@ -9,10 +9,11 @@
     <ul>
         {% for page in section.pages %}
             <li>
-                <a href="{{ page.permalink | safe }}">
-                    {{ page.title }}
-                </a>
+                <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+                ({{ page.date }})
             </li>
+        {% else %}
+            <li>Soon!</li>
         {% endfor %}
     </ul>
 {% endblock content %}

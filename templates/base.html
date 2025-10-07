@@ -1,9 +1,12 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="{{ get_url(path='/output.css') }}" />
+        <link
+            rel="stylesheet"
+            href="{{ get_url(path='/css/tailwind-output.css') }}"
+        />
         <title>
             {% block page_title %}Guillaume Chirache{% endblock page_title %}
         </title>
@@ -34,14 +37,12 @@
                     class="flex items-center justify-center space-x-5"
                 >
                     <img
-                        class="h-10 w-10 rounded-full ring-1 ring-gray-300 lg:h-14 lg:w-14 dark:ring-gray-500"
-                        src="{{ get_url(path='/me.jpeg') }}"
+                        class="h-10 w-10 rounded-full ring-1 ring-gray-300 lg:h-12 lg:w-12 dark:ring-gray-500"
+                        src="{{ get_url(path='/images/me.jpeg') }}"
                         alt="Photo of me"
                     />
 
-                    <div class="text-xl font-semibold lg:text-2xl">
-                        Guillaume Chirache
-                    </div>
+                    <div class="text-xl font-semibold">Guillaume Chirache</div>
                 </a>
 
                 <ul
@@ -49,23 +50,21 @@
                 >
                     <li>
                         <a
-                            class="hover:text-red-700 dark:hover:text-white"
+                            class="hocus:text-red-700 dark:hocus:text-white focus"
                             href="{{ get_url(path='/') }}"
                             >About</a
                         >
                     </li>
-                    <!--
-                        <li>
-                            <a
-                                class="hover:text-red-700 dark:hover:text-white"
-                                href="{{ get_url(path='@/posts/_index.md') }}"
-                                >Posts</a
-                            >
-                        </li>
-                    -->
                     <li>
                         <a
-                            class="hover:text-red-700 dark:hover:text-white"
+                            class="hocus:text-red-700 dark:hocus:text-white"
+                            href="{{ get_url(path='@/posts/_index.md') }}"
+                            >Posts</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="hocus:text-red-700 dark:hocus:text-white"
                             href="{{ config.extra.github }}"
                         >
                             GitHub</a
@@ -73,7 +72,7 @@
                     </li>
                     <li>
                         <a
-                            class="hover:text-red-700 dark:hover:text-white"
+                            class="hocus:text-red-700 dark:hocus:text-white"
                             href="{{ config.extra.linkedin }}"
                             >LinkedIn</a
                         >
@@ -113,7 +112,7 @@
         </header>
 
         <main
-            class="mx-auto mt-6 mb-auto w-full max-w-screen-lg space-y-4 p-4 lg:space-y-6"
+            class="prose dark:prose-invert mx-auto mt-6 mb-auto w-full max-w-screen-lg p-4"
         >
             {% block content %}{% endblock content %}
         </main>
@@ -131,6 +130,6 @@
             </div>
         </footer>
 
-        <script src="{{ get_url(path='/theme-toggle.js') }}"></script>
+        <script src="{{ get_url(path='/js/theme-toggle.js') }}"></script>
     </body>
 </html>

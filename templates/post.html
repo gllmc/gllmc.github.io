@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="title">{{ page.title }}</h1>
+    <h1>{{ page.title }}</h1>
 
-    <p class="subtitle"><strong>{{ page.date }}</strong></p>
+    <p>Posted on {{ page.date }}.</p>
 
-    {{ page.content|safe }}
+    {{ page.content | safe }}
 {% endblock content %}
