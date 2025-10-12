@@ -1,7 +1,6 @@
-var themeToggleBtn = document.getElementById("theme-toggle");
-
-var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+const themeToggleButton = document.getElementById("theme-toggle");
+const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
 if (
     localStorage.getItem("color-theme") === "dark" ||
@@ -13,25 +12,11 @@ if (
     themeToggleDarkIcon.classList.remove("hidden");
 }
 
-themeToggleBtn.addEventListener("click", function () {
-    themeToggleDarkIcon.classList.toggle("hidden");
-    themeToggleLightIcon.classList.toggle("hidden");
+themeToggleButton.addEventListener("click", function () {
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
 
-    if (localStorage.getItem("color-theme")) {
-        if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-        }
-    } else {
-        if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-        }
-    }
+    document.documentElement.classList.toggle("dark", !isCurrentlyDark);
+    themeToggleLightIcon.classList.toggle("hidden", isCurrentlyDark);
+    themeToggleDarkIcon.classList.toggle("hidden", !isCurrentlyDark);
+    localStorage.setItem("color-theme", isCurrentlyDark ? "light" : "dark");
 });
