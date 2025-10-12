@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#f9fafb" id="theme-color-meta" />
         <link
             rel="stylesheet"
             href="{{ get_url(path='/css/tailwind-output.css') }}"
@@ -23,6 +24,9 @@
                     window.matchMedia("(prefers-color-scheme: dark)").matches)
             ) {
                 document.documentElement.classList.add("dark");
+                document
+                    .getElementById("theme-color-meta")
+                    .setAttribute("content", "#111827");
             } else {
                 document.documentElement.classList.remove("dark");
             }
