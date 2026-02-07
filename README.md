@@ -4,7 +4,7 @@ This repository hosts the code for my [personal website](https://guillaumechirac
 
 ## Local development
 
-Prerequisites: Zola (`pacman -S zola`) and Node.js (22+).
+Prerequisites: Zola (`pacman -S zola`) and Node.js (24+).
 
 Install Tailwind CSS and the development dependencies with `npm install`.
 

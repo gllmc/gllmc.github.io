@@ -66,7 +66,7 @@ It is very important to combine PCRs 7 and 11. Remember that PCR 11 is intended 
 
 My setup is to use ukify to generate and sign my UKIs, while letting mkinitcpio generate the initramfs. This requires the installation of the `systemd-ukify` package. The mkinitcpio presets should then be modified by (un)commenting the appropriate lines to enable UKI generation. Here is what my `/etc/mkinitcpio.d/linux.preset` file looks like:
 
-```conf
+```ini
 ALL_kver="/boot/vmlinuz-linux"
 
 PRESETS=('default' 'fallback')
@@ -80,13 +80,13 @@ fallback_options="-S autodetect"
 
 It is also important to have the correct `HOOKS` in `/etc/mkinitcpio.conf`, notably `sd-encrypt` to unlock the LUKS partition:
 
-```conf
+```ini
 HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)
 ```
 
 By running `mkinitcpio -P`, you can check that UKIs are correctly generated. But they are not signed yet! For that, you need to edit the `/etc/kernel/uki.conf` file, which is used by `ukify`:
 
-```conf
+```ini
 [UKI]
 SecureBootSigningTool=systemd-sbsign
 SecureBootPrivateKey=/etc/kernel/secure-boot-private-key.pem

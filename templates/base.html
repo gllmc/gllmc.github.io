@@ -28,8 +28,6 @@
                 document
                     .getElementById("theme-color-meta")
                     .setAttribute("content", "#111827");
-            } else {
-                document.documentElement.classList.remove("dark");
             }
         </script>
     </head>
@@ -41,7 +39,7 @@
             class="bg-white shadow-sm dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:shadow-none"
         >
             <div
-                class="mx-auto max-w-screen-lg px-4 py-2 lg:flex lg:items-center lg:justify-between"
+                class="mx-auto max-w-5xl px-4 py-2 lg:flex lg:items-center lg:justify-between"
             >
                 <a
                     href="{{ get_url(path='/') }}"
@@ -124,7 +122,7 @@
         </header>
 
         <main
-            class="prose dark:prose-invert prose-p:text-justify mx-auto mt-6 mb-auto w-full max-w-screen-lg p-4"
+            class="prose dark:prose-invert prose-p:text-justify mx-auto mt-6 mb-auto w-full max-w-5xl p-4"
         >
             {% block content %}{% endblock content %}
         </main>
@@ -132,7 +130,7 @@
         <footer
             class="mt-6 border-t border-gray-200 bg-white text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
         >
-            <div class="mx-auto max-w-screen-lg px-4 py-2 text-center lg:py-4">
+            <div class="mx-auto max-w-5xl px-4 py-2 text-center lg:py-4">
                 Developed with Zola and Tailwind –
                 <a
                     class="text-red-700 dark:text-red-300"
