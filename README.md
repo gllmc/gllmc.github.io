@@ -12,4 +12,4 @@ Use `npm run watch` to launch both the Zola development server and the tailwind 
 
 ## Deployment
 
-Deployment is performed on each push using GitHub Actions. See `.github/workflows/deploy.yml`.
+Deployment on my server is performed on each push using GitHub Actions. See `.github/workflows/deploy.yml`.

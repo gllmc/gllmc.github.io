@@ -10,14 +10,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
             - name: Install Zola
               run: |
                   curl -sSLf https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz \
                     | tar -xz
                   sudo mv zola /usr/local/bin/
             - name: Setup Node.js
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: "24"
             - name: Build the website
@@ -25,19 +25,32 @@ jobs:
                   npm ci
                   npm run build
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
+                  name: website-build
                   path: public/
 
     deploy:
         needs: build
         runs-on: ubuntu-latest
-        permissions:
-            id-token: write
-            pages: write
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4
+            - name: Download artifact
+              uses: actions/download-artifact@v7
+              with:
+                  name: website-build
+                  path: public/
+
+            - name: Deploy via rsync over SSH
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_SSH_PRIVATE_KEY }}
+                  SSH_HOST: ${{ secrets.DEPLOYMENT_SSH_HOST }}
+                  SSH_USER: ${{ secrets.DEPLOYMENT_SSH_USER }}
+                  SSH_KNOWN_HOSTS: ${{ secrets.DEPLOYMENT_SSH_KNOWN_HOSTS }}
+                  TARGET_DIR: ${{ secrets.DEPLOYMENT_TARGET_DIR }}
+              run: |
+                  mkdir -p ~/.ssh/
+                  chmod 700 ~/.ssh/
+                  echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_key
+                  chmod 600 ~/.ssh/id_key
+                  echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+                  rsync -avz --delete -e "ssh -i ~/.ssh/id_key" public/ ${SSH_USER}@${SSH_HOST}:${TARGET_DIR}
