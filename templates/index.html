@@ -1,13 +1,33 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h1>
-        Hi! 👋
-    </h1>
+    <h1>Hi there 👋</h1>
 
-    <p>I am Guillaume Chirache, a computer science student currently pursuing my master’s degree (<i>Master parisien de recherche en informatique</i>, M2 MPRI) in Paris. This year also corresponds to the fourth year of my studies in the <i>Cycle ingénieur</i> program at École polytechnique.</p>
+    <div class="flex items-center space-x-10">
+        <img
+            class="hidden lg:block h-36 w-36 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+            src="{{ get_url(path='/images/me.jpeg') }}"
+            alt="Photo of me"
+        />
+        <div>
+            <p>
+                I am Guillaume Chirache, a computer science student currently pursuing my
+                master’s degree (<i>Master parisien de recherche en informatique</i>, M2
+                MPRI) in Paris. This year also corresponds to the fourth year of my studies
+                in the <i>Cycle ingénieur</i> program at École polytechnique.
+            </p>
 
-    <p>I am primarily interested in areas at the intersection of mathematics and computer science, namely (post-quantum) cryptography, formal verification, programming languages, and computability.</p>
+            <p>
+                I am primarily interested in areas at the intersection of mathematics and
+                computer science, namely (post-quantum) cryptography, computability, and
+                computational complexity.
+            </p>
 
-    <p>You are welcome to contact me at <code>[first]@[last].fr</code> (you can use <a href="{{ get_url(path='/pgp/guillaume-chirache-public-key.asc') }}">my PGP key</a>).</p>
+            <p>
+                This is my personal website, where I share some of my projects and academic
+                work.
+            </p>
+        </div>
+    </div>
+
+
 {% endblock %}

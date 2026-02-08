@@ -3,7 +3,12 @@ base_url = "https://chirache.fr"
 [markdown.highlighting]
 error_on_missing_language = true
 theme = "github-dark"
+
 [extra]
+source = "https://github.com/gllmc/chirache.fr"
 github = "https://github.com/gllmc"
 linkedin = "https://www.linkedin.com/in/chirache/"
-source = "https://github.com/gllmc/gllmc.github.io"
+email_format = "[first]@[last].fr"
+git_ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6QOEfGMhBBkilzbO5MfCObLreLdqXp78pQZ3MNFZQs"
+git_ssh_fingerprint = "SHA256:CdcD1TagSBG/l1N6BpnimZStnKLqxx/cBSIrExMcAZ0"
+git_ssh_created_in = "September 2023"

@@ -39,19 +39,13 @@
             class="bg-white shadow-sm dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:shadow-none"
         >
             <div
-                class="mx-auto max-w-5xl px-4 py-2 lg:flex lg:items-center lg:justify-between"
+                class="mx-auto max-w-5xl px-4 py-2 lg:flex lg:items-center lg:justify-between lg:h-15"
             >
                 <a
                     href="{{ get_url(path='/') }}"
                     class="flex items-center justify-center space-x-5"
                 >
-                    <img
-                        class="h-10 w-10 rounded-full ring-1 ring-gray-300 lg:h-12 lg:w-12 dark:ring-gray-500"
-                        src="{{ get_url(path='/images/me.jpeg') }}"
-                        alt="Photo of me"
-                    />
-
-                    <div class="text-xl font-semibold">Guillaume Chirache</div>
+                    <div class="text-xl font-semibold ">Guillaume Chirache</div>
                 </a>
 
                 <ul
@@ -60,8 +54,15 @@
                     <li>
                         <a
                             class="hocus:text-red-700 dark:hocus:text-white focus"
-                            href="{{ get_url(path='/') }}"
-                            >About</a
+                            href="{{ get_url(path='@/research.md') }}"
+                            >Research</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="hocus:text-red-700 dark:hocus:text-white focus"
+                            href="{{ get_url(path='@/teaching.md') }}"
+                            >Teaching</a
                         >
                     </li>
                     <li>
@@ -74,48 +75,42 @@
                     <li>
                         <a
                             class="hocus:text-red-700 dark:hocus:text-white"
-                            href="{{ config.extra.github }}"
-                        >
-                            GitHub</a
+                            href="{{ get_url(path='@/contact.md') }}"
+                            >Contact</a
                         >
                     </li>
                     <li>
                         <a
                             class="hocus:text-red-700 dark:hocus:text-white"
-                            href="{{ config.extra.linkedin }}"
-                            >LinkedIn</a
+                            href="{{ config.extra.github }}"
                         >
+                            <svg
+                                fill="currentColor"
+                                viewBox="0 -0.5 25 25"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5"
+                            >
+                                <path
+                                    d="m12.301 0h.093c2.242 0 4.34.613 6.137 1.68l-.055-.031c1.871 1.094 3.386 2.609 4.449 4.422l.031.058c1.04 1.769 1.654 3.896 1.654 6.166 0 5.406-3.483 10-8.327 11.658l-.087.026c-.063.02-.135.031-.209.031-.162 0-.312-.054-.433-.144l.002.001c-.128-.115-.208-.281-.208-.466 0-.005 0-.01 0-.014v.001q0-.048.008-1.226t.008-2.154c.007-.075.011-.161.011-.249 0-.792-.323-1.508-.844-2.025.618-.061 1.176-.163 1.718-.305l-.076.017c.573-.16 1.073-.373 1.537-.642l-.031.017c.508-.28.938-.636 1.292-1.058l.006-.007c.372-.476.663-1.036.84-1.645l.009-.035c.209-.683.329-1.468.329-2.281 0-.045 0-.091-.001-.136v.007c0-.022.001-.047.001-.072 0-1.248-.482-2.383-1.269-3.23l.003.003c.168-.44.265-.948.265-1.479 0-.649-.145-1.263-.404-1.814l.011.026c-.115-.022-.246-.035-.381-.035-.334 0-.649.078-.929.216l.012-.005c-.568.21-1.054.448-1.512.726l.038-.022-.609.384c-.922-.264-1.981-.416-3.075-.416s-2.153.152-3.157.436l.081-.02q-.256-.176-.681-.433c-.373-.214-.814-.421-1.272-.595l-.066-.022c-.293-.154-.64-.244-1.009-.244-.124 0-.246.01-.364.03l.013-.002c-.248.524-.393 1.139-.393 1.788 0 .531.097 1.04.275 1.509l-.01-.029c-.785.844-1.266 1.979-1.266 3.227 0 .025 0 .051.001.076v-.004c-.001.039-.001.084-.001.13 0 .809.12 1.591.344 2.327l-.015-.057c.189.643.476 1.202.85 1.693l-.009-.013c.354.435.782.793 1.267 1.062l.022.011c.432.252.933.465 1.46.614l.046.011c.466.125 1.024.227 1.595.284l.046.004c-.431.428-.718 1-.784 1.638l-.001.012c-.207.101-.448.183-.699.236l-.021.004c-.256.051-.549.08-.85.08-.022 0-.044 0-.066 0h.003c-.394-.008-.756-.136-1.055-.348l.006.004c-.371-.259-.671-.595-.881-.986l-.007-.015c-.198-.336-.459-.614-.768-.827l-.009-.006c-.225-.169-.49-.301-.776-.38l-.016-.004-.32-.048c-.023-.002-.05-.003-.077-.003-.14 0-.273.028-.394.077l.007-.003q-.128.072-.08.184c.039.086.087.16.145.225l-.001-.001c.061.072.13.135.205.19l.003.002.112.08c.283.148.516.354.693.603l.004.006c.191.237.359.505.494.792l.01.024.16.368c.135.402.38.738.7.981l.005.004c.3.234.662.402 1.057.478l.016.002c.33.064.714.104 1.106.112h.007c.045.002.097.002.15.002.261 0 .517-.021.767-.062l-.027.004.368-.064q0 .609.008 1.418t.008.873v.014c0 .185-.08.351-.208.466h-.001c-.119.089-.268.143-.431.143-.075 0-.147-.011-.214-.032l.005.001c-4.929-1.689-8.409-6.283-8.409-11.69 0-2.268.612-4.393 1.681-6.219l-.032.058c1.094-1.871 2.609-3.386 4.422-4.449l.058-.031c1.739-1.034 3.835-1.645 6.073-1.645h.098-.005zm-7.64 17.666q.048-.112-.112-.192-.16-.048-.208.032-.048.112.112.192.144.096.208-.032zm.497.545q.112-.08-.032-.256-.16-.144-.256-.048-.112.08.032.256.159.157.256.047zm.48.72q.144-.112 0-.304-.128-.208-.272-.096-.144.08 0 .288t.272.112zm.672.673q.128-.128-.064-.304-.192-.192-.32-.048-.144.128.064.304.192.192.32.044zm.913.4q.048-.176-.208-.256-.24-.064-.304.112t.208.24q.24.097.304-.096zm1.009.08q0-.208-.272-.176-.256 0-.256.176 0 .208.272.176.256.001.256-.175zm.929-.16q-.032-.176-.288-.144-.256.048-.224.24t.288.128.225-.224z"
+                                ></path>
+                            </svg>
+                        </a>
                     </li>
                     <li>
-                        <button
-                            id="theme-toggle"
-                            type="button"
-                            class="flex items-center justify-center outline-none hover:cursor-pointer hover:text-red-700 dark:hover:text-white"
-                            aria-label="Toggle theme"
-                        >
-                            <svg
-                                id="theme-toggle-dark-icon"
-                                class="hidden w-5"
+                        <a
+                            class="hocus:text-red-700 dark:hocus:text-white"
+                            href="{{ config.extra.linkedin }}"
+                            ><svg
                                 fill="currentColor"
-                                viewBox="0 0 20 20"
+                                viewBox="0 0 32 32"
+                                version="1.1"
                                 xmlns="http://www.w3.org/2000/svg"
+                                class="w-5"
                             >
                                 <path
-                                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                                ></path>
-                            </svg>
-                            <svg
-                                id="theme-toggle-light-icon"
-                                class="hidden w-5"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                ></path>
-                            </svg>
-                        </button>
+                                    d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"
+                                ></path></svg
+                        ></a>
                     </li>
                 </ul>
             </div>
@@ -130,10 +125,40 @@
         <footer
             class="mt-6 border-t border-gray-200 bg-white text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
         >
-            <div class="mx-auto max-w-5xl px-4 py-2 text-center lg:py-4">
-                Developed with Zola and Tailwind –
+            <div
+                class="mx-auto flex max-w-5xl items-center justify-center px-4 py-2 lg:py-4"
+            >
+                <button
+                    id="theme-toggle"
+                    type="button"
+                    class="flex items-center justify-center outline-none hover:cursor-pointer hover:text-red-700 dark:hover:text-white"
+                    aria-label="Toggle theme"
+                >
+                    <svg
+                        id="theme-toggle-dark-icon"
+                        class="hidden w-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                        ></path>
+                    </svg>
+                    <svg
+                        id="theme-toggle-light-icon"
+                        class="hidden w-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        ></path>
+                    </svg>
+                </button>
                 <a
-                    class="text-red-700 dark:text-red-300"
+                    class="ms-6 text-red-700 dark:text-red-300"
                     href="{{ config.extra.source }}"
                     >Source code</a
                 >
@@ -152,7 +177,7 @@
             src="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/contrib/auto-render.min.js"
             integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
             crossorigin="anonymous"
-            onload="renderMathInElement(document.body);"
+            onload="renderMathInElement(document.body)"
         ></script>
     </body>
 </html>
