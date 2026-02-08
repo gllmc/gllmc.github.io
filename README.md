@@ -1,6 +1,6 @@
 # Guillaume Chirache's personal website
 
-This repository hosts the code for my [personal website](https://guillaumechirache.fr). It uses the [Zola](https://www.getzola.org) static site generator and the [Tailwind CSS](https://tailwindcss.com) framework.
+This repository hosts the code for my [personal website](https://chirache.fr). It uses the [Zola](https://www.getzola.org) static site generator and the [Tailwind CSS](https://tailwindcss.com) framework.
 
 ## Local development
 

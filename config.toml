@@ -1,9 +1,9 @@
-base_url = "https://guillaumechirache.fr"
+base_url = "https://chirache.fr"
 
 [markdown.highlighting]
 error_on_missing_language = true
 theme = "github-dark"
 [extra]
 github = "https://github.com/gllmc"
-linkedin = "https://www.linkedin.com/in/guillaumechirache/"
+linkedin = "https://www.linkedin.com/in/chirache/"
 source = "https://github.com/gllmc/gllmc.github.io"
