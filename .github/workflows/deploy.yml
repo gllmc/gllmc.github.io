@@ -38,7 +38,7 @@ jobs:
               uses: actions/download-artifact@v7
               with:
                   name: website-build
-                  path: public/
+                  path: build/
 
             - name: Deploy via rsync over SSH
               env:
@@ -53,4 +53,4 @@ jobs:
                   echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_key
                   chmod 600 ~/.ssh/id_key
                   echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-                  rsync -avz --delete -e "ssh -i ~/.ssh/id_key" public/ ${SSH_USER}@${SSH_HOST}:${TARGET_DIR}
+                  rsync -avz --delete -e "ssh -i ~/.ssh/id_key" build/ ${SSH_USER}@${SSH_HOST}:${TARGET_DIR}

@@ -20,8 +20,8 @@ As part of École Polytechnique’s second-year collective scientific project (P
 - [Transparents pour la soutenance](https://media.chirache.fr/research/INF08_Soutenance.pdf)
 - [Code repository](https://github.com/pq-pake)
 
-The project was nominated for École polytechnique’s best collective scientific project award. This project took place before I studied cryptography, and it essentially focused on implementation and benchmarking rather than on the design of the protocol and the security analysis.
+The project was nominated for École polytechnique’s best collective scientific project award. It took place before I studied cryptography, and it essentially focused on implementation and benchmarking rather than on the design of the protocol and the security analysis.
 
 ## Encoding of term rewriting in the Pi-calculus (2021)
 
-My first research internship, between my second and third years of Bachelor’s, was supervised by Romain Demangeon at LIP6. It focused on encoding rewriting rules over term algebras into the Pi-calculus. Here is the [report](https://media.chirache.fr/research/Rapport_stage_LIP6_Guillaume_Chirache.pdf) (in French).
+My first research internship, between my second and third years of bachelor’s, was supervised by Romain Demangeon at LIP6. It focused on encoding rewriting rules over term algebras into the Pi-calculus. Here is the [report](https://media.chirache.fr/research/Rapport_stage_LIP6_Guillaume_Chirache.pdf) (in French).
